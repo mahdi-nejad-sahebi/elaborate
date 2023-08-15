@@ -1,5 +1,5 @@
 #ifndef ELB_FLOAT8_H_
-#defien ELB_FLOAT8_H_
+#define ELB_FLOAT8_H_
 
 #include <cstdint>
 
