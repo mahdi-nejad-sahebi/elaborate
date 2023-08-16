@@ -6,6 +6,13 @@
 
 namespace elb
 {
+  namespace float8
+  {
+    constexpr int8_t MIN = -128;
+    constexpr int8_t MAX = +128;
+    constexpr int8_t NAN = 0xff;
+  }
+
   struct float8_t
   {
     float8_t();
