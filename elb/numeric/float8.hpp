@@ -38,11 +38,9 @@ namespace elb
     operator int8_t();
     operator char();
 
+    bool operator==(const float& _num);
     uint8_t m_num;
   };
-
-  bool operator==(float8_t& _float8, const float& _num);
-  bool operator==(const float& _num, float8_t& _float8);
 }
 
 #endif // ELB_FLOAT8_H_

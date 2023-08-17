@@ -204,14 +204,9 @@ std::cout<< f32.Mem << ", " << f8.Mem << ", " << uint32_t(m_num) << std::endl;
   }
 
 
-  bool operator==(float8_t& _float8, const float& _num)
+  bool float8_t::operator==(const float& _num)
   {
-    float num = _float8; 
-    return (num  == _num);
-  }
-
-  bool operator==(const float& _num, float8_t& _float8)
-  {
-    return (_float8 == _num);
+    float num = 0;//*this;
+    return (num == _num);
   }
 }
