@@ -8,9 +8,8 @@ namespace elb
 {
   namespace float8
   {
-    constexpr int8_t FLT8_MIN = -128;
-    constexpr int8_t FLT8_MAX = +128;
-    constexpr int8_t FLT8_NAN = 0xff;
+    constexpr float FLT8_MIN = -128.0F;
+    constexpr float FLT8_MAX = +128.0F;
   }
 
   struct float8_t
@@ -39,8 +38,11 @@ namespace elb
     operator int8_t();
     operator char();
 
-    int8_t m_num;
+    uint8_t m_num;
   };
+
+  bool operator==(float8_t& _float8, const float& _num);
+  bool operator==(const float& _num, float8_t& _float8);
 }
 
 #endif // ELB_FLOAT8_H_

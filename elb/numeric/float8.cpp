@@ -1,8 +1,10 @@
 #include "float8.hpp"
 #include <cmath>
-#include <iostream>
 
-typedef union __attribute__((aligned(1)))
+#include <iostream>
+//  const funcitons and operations
+
+typedef union __attribute__((aligned(1)))// extra
 {
   uint8_t Mem;
 
@@ -14,7 +16,7 @@ typedef union __attribute__((aligned(1)))
   }__attribute__((aligned(1)));
 }Float8_t;
 
-typedef union __attribute__((packed))
+typedef union __attribute__((packed))//extra
 {
   float Mem;
 
@@ -26,6 +28,7 @@ typedef union __attribute__((packed))
   }__attribute__((packed));
 }Float32_t;
 
+constexpr uint8_t FLT8_NAN = 0xff;
 constexpr uint8_t COEF     = 2;
 constexpr float   END_NORM = (128.0F - (COEF * 63));
 
@@ -51,7 +54,6 @@ namespace elb
       f8.Sgn = 0;
     uint8_t const con = (val < END_NORM);
 
-
     if (con)
     {
       f8.Man = (uint8_t)(roundf(val * 100.0F) / COEF);
@@ -68,12 +70,13 @@ namespace elb
       f8.Man = ~f8.Man;
       f8.Exp = !f8.Exp;
 
-      if (elb::float8::FLT8_NAN == f8.Mem)
-        f8.Mem = 0;
+      //if (FLT8_NAN == f8.Mem)
+      //  f8.Mem = 0;
     }
 
     float8_t float8 = {};
     float8.m_num = f8.Mem;
+std::cout<< numf << ", " << val << ", " << uint32_t(float8.m_num) << std::endl;
     return float8;
   }
 
@@ -128,6 +131,7 @@ namespace elb
 
   float8_t::operator float()
   {
+std::cout << "float() " << uint32_t(m_num) << "\n";
     Float8_t f8 = {0};
     f8.Mem = m_num;
     Float32_t f32 = {0};
@@ -138,7 +142,7 @@ namespace elb
       f8.Exp = !f8.Exp;
     }
 
-    uint8_t const con = (0 == f8.Exp);
+    uint8_t const con = (0 == f8.Exp);//!
 
     if (con)
     {
@@ -150,6 +154,7 @@ namespace elb
     }
 
     f32.Sgn = f8.Sgn;
+std::cout<< f32.Mem << ", " << f8.Mem << ", " << uint32_t(m_num) << std::endl;
     return f32.Mem;
   }
 
@@ -197,5 +202,16 @@ namespace elb
   {
     return m_num;
   }
-}
 
+
+  bool operator==(float8_t& _float8, const float& _num)
+  {
+    float num = _float8; 
+    return (num  == _num);
+  }
+
+  bool operator==(const float& _num, float8_t& _float8)
+  {
+    return (_float8 == _num);
+  }
+}
