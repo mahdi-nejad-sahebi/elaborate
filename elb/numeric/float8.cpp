@@ -204,9 +204,78 @@ std::cout<< f32.Mem << ", " << f8.Mem << ", " << uint32_t(m_num) << std::endl;
   }
 
 
-  bool float8_t::operator==(const float& _num)
+  bool float8_t::operator==(const float8_t& _num)
   {
-    float num = 0;//*this;
-    return (num == _num);
+    return (_num.m_num == m_num);
   }
+  
+  
+  bool operator==(const float8_t& _flt8, const float& _flt32)
+  {
+    return (_flt8 == _flt32);
+  }
+  
+  bool operator==(const float& _flt32, const float8_t& _flt8)
+  {
+    return (_flt8 == _flt32);
+  }
+   
+   
+  bool operator!=(const float8_t& _flt8, const float& _flt32)
+  {
+    return (_flt8 != _flt32);
+  }
+  
+  bool operator!=(const float& _flt32, const float8_t& _flt8)
+  {
+    return (_flt8 != _flt32);
+  }
+ 
+    
+  bool operator<=(const float8_t& _flt8, const float& _flt32)
+  {
+    return (_flt8 <= _flt32);
+  }
+  
+  bool operator<=(const float& _flt32, const float8_t& _flt8)
+  {
+    return (_flt8 <= _flt32);
+  }
+ 
+   
+   
+  bool operator>=(const float8_t& _flt8, const float& _flt32)
+  {
+    return (_flt8 >= _flt32);
+  }
+  
+  bool operator>=(const float& _flt32, const float8_t& _flt8)
+  {
+    return (_flt8 >= _flt32);
+  }
+   
+   
+  bool operator<(const float8_t& _flt8, const float& _flt32)
+  {
+    return (_flt8 < _flt32);
+  }
+  
+  bool operator<(const float& _flt32, const float8_t& _flt8)
+  {
+    return (_flt8 < _flt32);
+  }
+   
+   
+  bool operator>(const float8_t& _flt8, const float& _flt32)
+  {
+    return (_flt8 > _flt32);
+  }
+  
+  bool operator>(const float& _flt32, const float8_t& _flt8)
+  {
+    return (_flt8 > _flt32);
+  }
+ 
+ 
+ 
 }
