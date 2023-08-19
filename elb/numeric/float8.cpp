@@ -41,7 +41,7 @@ namespace elb
     
   }
    
-  float8_t float8_t::operator=(const float& _num)
+  float8_t& float8_t::operator=(const float& _num)
   {
     Float8_t f8 = {0};
     float numf = _num;
@@ -74,64 +74,54 @@ namespace elb
       //  f8.Mem = 0;
     }
 
-    float8_t float8 = {};
-    float8.m_num = f8.Mem;
-std::cout<< numf << ", " << val << ", " << uint32_t(float8.m_num) << std::endl;
-    return float8;
+    m_num = f8.Mem;
+    return *this;
   }
 
-  float8_t float8_t::operator=(const uint64_t& _num)
+  float8_t& float8_t::operator=(const uint64_t& _num)
   {  
     float8_t float8;
     return float8;
   }
  
-  float8_t float8_t::operator=(const int64_t& _num)
+  float8_t& float8_t::operator=(const int64_t& _num)
   {
-    float8_t float8;
-    return float8;
+    return *this;
   }
 
-  float8_t float8_t::operator=(const uint32_t& _num)
+  float8_t& float8_t::operator=(const uint32_t& _num)
   {  
-    float8_t float8;
-    return float8;
+    return *this;
   }
  
-  float8_t float8_t::operator=(const int32_t& _num)
+  float8_t& float8_t::operator=(const int32_t& _num)
   {
-    float8_t float8;
-    return float8;
+    return *this;
   }
 
-  float8_t float8_t::operator=(const uint16_t& _num)
-  {  
-    float8_t float8;
-    return float8;
+  float8_t& float8_t::operator=(const uint16_t& _num)
+  {
+    return *this;
   }
  
-  float8_t float8_t::operator=(const int16_t& _num)
+  float8_t& float8_t::operator=(const int16_t& _num)
   {
-    float8_t float8;
-    return float8;
+    return *this;
   }
 
-  float8_t float8_t::operator=(const uint8_t& _num)
+  float8_t& float8_t::operator=(const uint8_t& _num)
   {  
-    float8_t float8;
-    return float8;
+    return *this;
   }
  
-  float8_t float8_t::operator=(const int8_t& _num)
+  float8_t& float8_t::operator=(const int8_t& _num)
   {
-    float8_t float8;
-    return float8;
+    return *this;
   }
 
 
   float8_t::operator float()
   {
-std::cout << "float() " << uint32_t(m_num) << "\n";
     Float8_t f8 = {0};
     f8.Mem = m_num;
     Float32_t f32 = {0};
@@ -154,7 +144,6 @@ std::cout << "float() " << uint32_t(m_num) << "\n";
     }
 
     f32.Sgn = f8.Sgn;
-std::cout<< f32.Mem << ", " << f8.Mem << ", " << uint32_t(m_num) << std::endl;
     return f32.Mem;
   }
 
@@ -202,13 +191,7 @@ std::cout<< f32.Mem << ", " << f8.Mem << ", " << uint32_t(m_num) << std::endl;
   {
     return m_num;
   }
-
-
-  bool float8_t::operator==(const float8_t& _num)
-  {
-    return (_num.m_num == m_num);
-  }
-  
+ 
   
   bool operator==(const float8_t& _flt8, const float& _flt32)
   {
@@ -275,7 +258,4 @@ std::cout<< f32.Mem << ", " << f8.Mem << ", " << uint32_t(m_num) << std::endl;
   {
     return (_flt8 > _flt32);
   }
- 
- 
- 
 }
