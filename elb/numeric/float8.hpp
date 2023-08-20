@@ -43,12 +43,10 @@ namespace elb
     operator char();
     operator bool();
 
-    bool operator==(const float8_t& _num);
-
     uint8_t m_num;
   };
-  
-  
+
+  bool operator==(const float8_t& _flt8L, const float8_t& _flt8R);
   bool operator==(const float8_t& _flt8, const float& _flt32);
   bool operator==(const float& _flt32, const float8_t& _flt8);
   bool operator!=(const float8_t& _flt8, const float& _flt32);

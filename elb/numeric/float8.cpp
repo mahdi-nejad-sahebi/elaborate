@@ -221,8 +221,13 @@ void float8_t::Compress(float _num)
   {
     return bool(Decompress());
   }
- 
-  
+
+
+  bool operator==(const float8_t& _flt8L, const float8_t& _flt8R)
+  {
+    return (_flt8L.m_num == _flt8R.m_num);
+  }
+
   bool operator==(const float8_t& _flt8, const float& _flt32)
   {
     return (_flt8.Decompress() == _flt32);
