@@ -16,6 +16,8 @@ namespace elb
   struct float8_t
   {
     float8_t();
+    void Compress(float _flt32);
+    float Decompress() const;
 
     float8_t& operator=(const float& _float);
     float8_t& operator=(const uint64_t& _num);
@@ -27,6 +29,7 @@ namespace elb
     float8_t& operator=(const uint8_t& _num);
     float8_t& operator=(const int8_t& _num);
     float8_t& operator=(const char& _num);
+    float8_t& operator=(const bool& _num);
 
     operator float();
     operator uint64_t();
@@ -38,12 +41,12 @@ namespace elb
     operator uint8_t();
     operator int8_t();
     operator char();
-
-    bool operator==(const float8_t& _num);  
+    operator bool();
 
     uint8_t m_num;
   };
-  
+
+  bool operator==(const float8_t& _flt8L, const float8_t& _flt8R);
   bool operator==(const float8_t& _flt8, const float& _flt32);
   bool operator==(const float& _flt32, const float8_t& _flt8);
   bool operator!=(const float8_t& _flt8, const float& _flt32);
