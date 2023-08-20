@@ -40,6 +40,7 @@ namespace elb
     operator uint8_t();
     operator int8_t();
     operator char();
+    operator bool();
 
     bool operator==(const float8_t& _num);
 

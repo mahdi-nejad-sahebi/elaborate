@@ -160,58 +160,62 @@ void float8_t::Compress(float _num)
 
   float8_t::operator uint64_t()
   {
-    return m_num;
+    return uint64_t(Decompress());
   }
 
   float8_t::operator int64_t()
   {
-    return m_num;
+    return int64_t(Decompress());
   }
 
   float8_t::operator uint32_t()
   {
-    return m_num;
+    return uint32_t(Decompress());
   }
 
   float8_t::operator int32_t()
   {
-    return m_num;
+    return int32_t(Decompress());
   }
 
   float8_t::operator uint16_t()
   {
-    return m_num;
+    return uint16_t(Decompress());
   }
 
   float8_t::operator int16_t()
   {
-    return m_num;
+    return int16_t(Decompress());
   }
 
   float8_t::operator uint8_t()
   {
-    return m_num;
+    return uint8_t(Decompress());
   }
 
   float8_t::operator int8_t()
   {
-    return m_num;
+    return int8_t(Decompress());
   }
 
   float8_t::operator char()
   {
-    return m_num;
+    return char(Decompress());
   }
  
+  float8_t::operator bool()
+  {
+    return bool(Decompress());
+  }
  
   
   bool operator==(const float8_t& _flt8, const float& _flt32)
-  {std::cout << "== 1\n";
+  {
     return (_flt8.Decompress() == _flt32);
   }
   
   bool operator==(const float& _flt32, const float8_t& _flt8)
-  {std::cout << "== 2\n";
+  {
     return (_flt8.Decompress() == _flt32);
   }
    
