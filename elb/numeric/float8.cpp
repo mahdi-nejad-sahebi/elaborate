@@ -36,52 +36,85 @@ constexpr float   END_NORM = (128.0F - (COEF * 63));
 
 namespace elb
 {
-  float8_t::float8_t() : m_num(0)
+float8_t::float8_t() : m_num(0)
+{
+
+}
+
+void float8_t::Compress(float _num)
+{
+  Float8_t f8 = {0};
+  float numf = _num;
+  Float32_t* const f32 = (Float32_t*)&numf;
+
+  f8.Sgn = f32->Sgn;
+
+  float const val = fabsf(numf);
+  if (0.0F == val)
+    f8.Sgn = 0;
+  uint8_t const con = (val < END_NORM);
+
+  if (con)
   {
-    
+    f8.Man = (uint8_t)(roundf(val * 100.0F) / COEF);
+    f8.Exp = 0;
   }
-   
-  float8_t& float8_t::operator=(const float& _num)
+  else
+  {
+    f8.Man = (uint8_t)roundf((val - END_NORM) / COEF);
+    f8.Exp = 1;
+  }
+
+  if (1 == f8.Sgn)
+  {
+    f8.Man = ~f8.Man;
+    f8.Exp = !f8.Exp;
+
+   //if (FLT8_NAN == f8.Mem)
+    //  f8.Mem = 0;
+  }
+
+  m_num = f8.Mem;
+}
+
+  float float8_t::Decompress() const
   {
     Float8_t f8 = {0};
-    float numf = _num;
-    Float32_t* const f32 = (Float32_t*)&numf;
-
-    f8.Sgn = f32->Sgn;
-
-    float const val = fabsf(numf);
-    if (0.0F == val)
-      f8.Sgn = 0;
-    uint8_t const con = (val < END_NORM);
-
-    if (con)
-    {
-      f8.Man = (uint8_t)(roundf(val * 100.0F) / COEF);
-      f8.Exp = 0;
-    }
-    else
-    {
-      f8.Man = (uint8_t)roundf((val - END_NORM) / COEF);
-      f8.Exp = 1;
-    }
+    f8.Mem = m_num;
+    Float32_t f32 = {0};
 
     if (1 == f8.Sgn)
     {
       f8.Man = ~f8.Man;
       f8.Exp = !f8.Exp;
-
-      //if (FLT8_NAN == f8.Mem)
-      //  f8.Mem = 0;
     }
 
-    m_num = f8.Mem;
+    uint8_t const con = (0 == f8.Exp);//!
+
+    if (con)
+    {
+      f32.Mem = (roundf(f8.Man * COEF) / 100.0F);
+    }
+    else
+    {
+      f32.Mem = roundf((f8.Man * COEF) + END_NORM);
+    }
+
+    f32.Sgn = f8.Sgn;
+    return f32.Mem;
+  }
+
+
+ 
+  float8_t& float8_t::operator=(const float& _num)
+  {
+    this->Compress(_num);
     return *this;
   }
 
   float8_t& float8_t::operator=(const uint64_t& _num)
-  {  
-    float8_t float8;
-    return float8;
+  {
+    return *this;
   }
  
   float8_t& float8_t::operator=(const int64_t& _num)
@@ -122,29 +155,7 @@ namespace elb
 
   float8_t::operator float()
   {
-    Float8_t f8 = {0};
-    f8.Mem = m_num;
-    Float32_t f32 = {0};
-
-    if (1 == f8.Sgn)
-     {
-      f8.Man = ~f8.Man;
-      f8.Exp = !f8.Exp;
-    }
-
-    uint8_t const con = (0 == f8.Exp);//!
-
-    if (con)
-    {
-      f32.Mem = (roundf(f8.Man * COEF) / 100.0F);
-    }
-    else
-    {
-      f32.Mem = roundf((f8.Man * COEF) + END_NORM);
-    }
-
-    f32.Sgn = f8.Sgn;
-    return f32.Mem;
+    return Decompress();
   }
 
   float8_t::operator uint64_t()
@@ -192,15 +203,16 @@ namespace elb
     return m_num;
   }
  
+ 
   
   bool operator==(const float8_t& _flt8, const float& _flt32)
   {
-    return (_flt8 == _flt32);
+    return (_flt8.Decompress() == _flt32);
   }
   
   bool operator==(const float& _flt32, const float8_t& _flt8)
   {
-    return (_flt8 == _flt32);
+    return (_flt8.Decompress() == _flt32);
   }
    
    
