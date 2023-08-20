@@ -114,41 +114,55 @@ void float8_t::Compress(float _num)
 
   float8_t& float8_t::operator=(const uint64_t& _num)
   {
+    this->Compress(float(_num));
     return *this;
   }
  
   float8_t& float8_t::operator=(const int64_t& _num)
   {
+    this->Compress(float(_num));
     return *this;
   }
 
   float8_t& float8_t::operator=(const uint32_t& _num)
-  {  
+  {
+    this->Compress(float(_num));
     return *this;
   }
  
   float8_t& float8_t::operator=(const int32_t& _num)
   {
+    this->Compress(float(_num));
     return *this;
   }
 
   float8_t& float8_t::operator=(const uint16_t& _num)
   {
+    this->Compress(float(_num));
     return *this;
   }
  
   float8_t& float8_t::operator=(const int16_t& _num)
   {
+    this->Compress(float(_num));
     return *this;
   }
 
   float8_t& float8_t::operator=(const uint8_t& _num)
-  {  
+  {
+    this->Compress(float(_num));
     return *this;
   }
  
   float8_t& float8_t::operator=(const int8_t& _num)
   {
+    this->Compress(float(_num));
+    return *this;
+  }
+
+  float8_t& float8_t::operator=(const bool& _num)
+  {
+    this->Compress(float(_num));
     return *this;
   }
 

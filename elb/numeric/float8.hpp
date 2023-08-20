@@ -29,6 +29,7 @@ namespace elb
     float8_t& operator=(const uint8_t& _num);
     float8_t& operator=(const int8_t& _num);
     float8_t& operator=(const char& _num);
+    float8_t& operator=(const bool& _num);
 
     operator float();
     operator uint64_t();
