@@ -206,68 +206,68 @@ void float8_t::Compress(float _num)
  
   
   bool operator==(const float8_t& _flt8, const float& _flt32)
-  {
+  {std::cout << "== 1\n";
     return (_flt8.Decompress() == _flt32);
   }
   
   bool operator==(const float& _flt32, const float8_t& _flt8)
-  {
+  {std::cout << "== 2\n";
     return (_flt8.Decompress() == _flt32);
   }
    
    
   bool operator!=(const float8_t& _flt8, const float& _flt32)
   {
-    return (_flt8 != _flt32);
+    return (_flt8.Decompress() != _flt32);
   }
   
   bool operator!=(const float& _flt32, const float8_t& _flt8)
   {
-    return (_flt8 != _flt32);
+    return (_flt8.Decompress() != _flt32);
   }
  
     
   bool operator<=(const float8_t& _flt8, const float& _flt32)
   {
-    return (_flt8 <= _flt32);
+    return (_flt8.Decompress() <= _flt32);
   }
   
   bool operator<=(const float& _flt32, const float8_t& _flt8)
   {
-    return (_flt8 <= _flt32);
+    return (_flt32 <= _flt8.Decompress());
   }
  
    
    
   bool operator>=(const float8_t& _flt8, const float& _flt32)
   {
-    return (_flt8 >= _flt32);
+    return (_flt8.Decompress() >= _flt32);
   }
   
   bool operator>=(const float& _flt32, const float8_t& _flt8)
   {
-    return (_flt8 >= _flt32);
+    return (_flt32 >= _flt8.Decompress());
   }
    
    
   bool operator<(const float8_t& _flt8, const float& _flt32)
   {
-    return (_flt8 < _flt32);
+    return (_flt8.Decompress() < _flt32);
   }
   
   bool operator<(const float& _flt32, const float8_t& _flt8)
   {
-    return (_flt8 < _flt32);
+    return (_flt32 < _flt8.Decompress());
   }
    
    
   bool operator>(const float8_t& _flt8, const float& _flt32)
   {
-    return (_flt8 > _flt32);
+    return (_flt8.Decompress() > _flt32);
   }
   
   bool operator>(const float& _flt32, const float8_t& _flt8)
   {
-    return (_flt8 > _flt32);
+    return (_flt32 > _flt8.Decompress());
   }
 }
