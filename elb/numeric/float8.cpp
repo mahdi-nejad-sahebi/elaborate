@@ -89,16 +89,10 @@ void float8_t::Compress(float _num)
       f8.Exp = !f8.Exp;
     }
 
-    uint8_t const con = (0 == f8.Exp);//!
-
-    if (con)
-    {
+    if (0 == f8.Exp)
       f32.Mem = (roundf(f8.Man * COEF) / 100.0F);
-    }
     else
-    {
       f32.Mem = roundf((f8.Man * COEF) + END_NORM);
-    }
 
     f32.Sgn = f8.Sgn;
     return f32.Mem;
