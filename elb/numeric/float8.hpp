@@ -8,14 +8,19 @@ namespace elb
 {
   namespace float8
   {
-    constexpr float FLT8_MIN = -128.0F;
-    constexpr float FLT8_MAX = +128.0F;
-    // TODO(MN): MIN/MAX NORM
+    constexpr float FLT8_MIN             = -128.0F;
+    constexpr float FLT8_MAX             = +128.0F;
+    constexpr float FLT8_RESOLUTION      = 2.0F;
+
+    constexpr float FLT8_MIN_NORM        = -1.26F;
+    constexpr float FLT8_MAX_NORM        = +1.26F;
+    constexpr float FLT8_RESOLUTION_NORM = 0.02F;
   }
 
   struct float8_t
   {
     float8_t();
+    bool is_norm();
     void Compress(float _flt32);
     float Decompress() const;
 

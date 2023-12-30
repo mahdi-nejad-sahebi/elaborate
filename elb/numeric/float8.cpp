@@ -36,9 +36,16 @@ constexpr float   END_NORM = (128.0F - (COEF * 63));
 
 namespace elb
 {
+
 float8_t::float8_t() : m_num(0)
 {
 
+}
+
+bool float8_t::is_norm()
+{
+  const float magnitude = fabsf(Decompress());
+  return (magnitude <= float8::FLT8_MAX_NORM);
 }
 
 void float8_t::Compress(float _num)
