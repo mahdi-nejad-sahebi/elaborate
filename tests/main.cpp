@@ -32,21 +32,23 @@ TEST(float8, is_norm)
   }
 }
 
-//TEST(float8, storage)
-//{
-//  float number;
-//  elb::float8_t compressed_number;
+TEST(float8, read_write)
+{
+  float number;
+  elb::float8_t compressed_number;
 
-//  for (uint32_t test_index = 0; test_index < 1000000; test_index++) {
-//    number = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
-//    compressed_number = number;
-//    const float decompressed_number = compressed_number;
+  for (uint32_t test_index = 0; test_index < 1000000; test_index++) {
+    number = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
+    compressed_number = number;
+    const float decompressed_number = compressed_number;
 
-//    const float error = fabsf(number - decompressed_number);
-//    // TODO(MN): Add is_norm()
-//    EXPECT_FLOAT_EQ(number, decompressed_number);
-//  }
-//}
+    const float error = fabsf(number - decompressed_number);
+    if (compressed_number.is_norm())
+      EXPECT_FLOAT_EQ(elb::float8::FLT8_RESOLUTION_NORM, error);
+    else
+      EXPECT_FLOAT_EQ(elb::float8::FLT8_RESOLUTION, error);
+  }
+}
 
 
 int main()
