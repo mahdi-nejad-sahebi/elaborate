@@ -16,18 +16,37 @@ static float random_norm(const float min, const float max)
   return (min + (max - min) * norm_random);
 }
 
-TEST(float8, storage)
-{
-  for (uint32_t test_index = 0; test_index < 1000000; test_index++) {
-    const float f32 = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
-//    Elb_F8_t const f8 = Elb_F8_Set(f32);
-//    float const decomrpess32 = Elb_F8_Get(f8);
-//    printf("%3.3u,  %+3.3" PRIi8 ", %+7.2f,  %+7.2f\n", num, (int8_t)num, f32, decomrpess32);
 
-//    assert(decomrpess32 == f32);
-    std::cout << f32 << std::endl;
+TEST(float8, is_norm)
+{
+  float number;
+  elb::float8_t compressed_number;
+
+  for (uint32_t test_index = 0; test_index < 1000000; test_index++) {
+    number = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
+    compressed_number = number;
+
+    const bool is_normalized = (elb::float8::FLT8_MIN_NORM <= number) &&
+                               (number <= elb::float8::FLT8_MAX_NORM);
+    EXPECT_EQ(is_normalized, compressed_number.is_norm());
   }
 }
+
+//TEST(float8, storage)
+//{
+//  float number;
+//  elb::float8_t compressed_number;
+
+//  for (uint32_t test_index = 0; test_index < 1000000; test_index++) {
+//    number = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
+//    compressed_number = number;
+//    const float decompressed_number = compressed_number;
+
+//    const float error = fabsf(number - decompressed_number);
+//    // TODO(MN): Add is_norm()
+//    EXPECT_FLOAT_EQ(number, decompressed_number);
+//  }
+//}
 
 
 int main()
