@@ -1,7 +1,7 @@
-#include <gtest/gtest.h>
-#include <elb/numeric/float8.hpp>
 #include <iostream>
 #include <random>
+#include <gtest/gtest.h>
+#include <elb/numeric/float8.hpp>
 
 
 
@@ -16,15 +16,11 @@ static float random_norm(const float min, const float max)
   return (min + (max - min) * norm_random);
 }
 
-
 TEST(float8, is_norm)
 {
-  float number;
-  elb::float8_t compressed_number;
-
   for (uint32_t test_index = 0; test_index < 1000000; test_index++) {
-    number = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
-    compressed_number = number;
+    const float number = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
+    const elb::float8_t compressed_number = number;
 
     const bool is_normalized = (elb::float8::FLT8_MIN_NORM <= number) &&
                                (number <= elb::float8::FLT8_MAX_NORM);
@@ -34,12 +30,9 @@ TEST(float8, is_norm)
 
 TEST(float8, read_write)
 {
-  float number;
-  elb::float8_t compressed_number;
-
   for (uint32_t test_index = 0; test_index < 1000000; test_index++) {
-    number = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
-    compressed_number = number;
+    const float number = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
+    const elb::float8_t compressed_number = number;
     const float decompressed_number = compressed_number;
 
     const float error = fabsf(number - decompressed_number);
@@ -52,15 +45,12 @@ TEST(float8, read_write)
 
 TEST(float8, oeprators)
 {
-  elb::float8_t float8_1;
-  elb::float8_t float8_2;
-
   for (uint32_t test_index = 0; test_index < 1000000; test_index++) {
     float float32_1 = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
     float float32_2 = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
 
-    float8_1 = float32_1;
-    float8_2 = float32_2;
+    const elb::float8_t float8_1 = float32_1;
+    const elb::float8_t float8_2 = float32_2;
 
     float32_1 = float(float8_1);
     float32_2 = float(float8_2);
