@@ -45,7 +45,7 @@ TEST(float8, read_write)
   }
 }
 
-TEST(float8, oeprators)
+TEST(float8, oeprators_float8_by_float8)
 {
   for (uint32_t test_index = 0; test_index < ITERATIONS_COUNT; test_index++) {
     float float32_1 = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
@@ -63,6 +63,35 @@ TEST(float8, oeprators)
     EXPECT_EQ(float32_1 <= float32_2, float8_1 <= float8_2);
     EXPECT_EQ(float32_1 >  float32_2, float8_1 >  float8_2);
     EXPECT_EQ(float32_1 >= float32_2, float8_1 >= float8_2);
+  }
+}
+
+
+TEST(float8, oeprators_float8_by_float32)
+{
+  for (uint32_t test_index = 0; test_index < ITERATIONS_COUNT; test_index++) {
+    float float32_1 = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
+    float float32_2 = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
+
+    const elb::float8_t float8_1 = float32_1;
+    const elb::float8_t float8_2 = float32_2;
+
+    float32_1 = float(float8_1);
+    float32_2 = float(float8_2);
+
+    EXPECT_EQ(float32_1 == float32_2, float8_1 == float32_1);
+    EXPECT_EQ(float32_1 != float32_2, float8_1 != float32_1);
+    EXPECT_EQ(float32_1 <  float32_2, float8_1 <  float32_1);
+    EXPECT_EQ(float32_1 <= float32_2, float8_1 <= float32_1);
+    EXPECT_EQ(float32_1 >  float32_2, float8_1 >  float32_1);
+    EXPECT_EQ(float32_1 >= float32_2, float8_1 >= float32_1);
+
+    EXPECT_EQ(float32_1 == float32_2, float32_1 == float8_1);
+    EXPECT_EQ(float32_1 != float32_2, float32_1 != float8_1);
+    EXPECT_EQ(float32_1 <  float32_2, float32_1 <  float8_1);
+    EXPECT_EQ(float32_1 <= float32_2, float32_1 <= float8_1);
+    EXPECT_EQ(float32_1 >  float32_2, float32_1 >  float8_1);
+    EXPECT_EQ(float32_1 >= float32_2, float32_1 >= float8_1);
   }
 }
 
