@@ -5,6 +5,8 @@
 
 
 
+constexpr uint32_t ITERATIONS_COUNT = 10000000;
+
 static float random_norm(const float min, const float max)
 {
   static std::random_device rd;
@@ -18,7 +20,7 @@ static float random_norm(const float min, const float max)
 
 TEST(float8, is_norm)
 {
-  for (uint32_t test_index = 0; test_index < 1000000; test_index++) {
+  for (uint32_t test_index = 0; test_index < ITERATIONS_COUNT; test_index++) {
     const float number = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
     const elb::float8_t compressed_number = number;
 
@@ -30,7 +32,7 @@ TEST(float8, is_norm)
 
 TEST(float8, read_write)
 {
-  for (uint32_t test_index = 0; test_index < 1000000; test_index++) {
+  for (uint32_t test_index = 0; test_index < ITERATIONS_COUNT; test_index++) {
     const float number = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
     const elb::float8_t compressed_number = number;
     const float decompressed_number = compressed_number;
@@ -45,7 +47,7 @@ TEST(float8, read_write)
 
 TEST(float8, oeprators)
 {
-  for (uint32_t test_index = 0; test_index < 1000000; test_index++) {
+  for (uint32_t test_index = 0; test_index < ITERATIONS_COUNT; test_index++) {
     float float32_1 = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
     float float32_2 = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
 
