@@ -42,6 +42,11 @@ float8_t::float8_t() : m_num(0)
 
 }
 
+float8_t::float8_t(const float& value)
+{
+  Compress(value);
+}
+
 bool float8_t::is_norm()
 {
   const float magnitude = fabsf(Decompress());

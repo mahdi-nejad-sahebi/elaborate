@@ -20,6 +20,7 @@ namespace elb
   struct float8_t
   {
     float8_t();
+    float8_t(const float& value);
     bool is_norm();
     void Compress(float _flt32);
     float Decompress() const;
