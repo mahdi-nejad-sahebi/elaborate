@@ -244,7 +244,12 @@ void float8_t::Compress(float _num)
     return (_flt8.Decompress() == _flt32);
   }
    
-   
+
+  bool operator!=(const float8_t& _flt8_1, const float8_t& _flt8_2)
+  {
+    return (_flt8_1.m_num != _flt8_2.m_num);
+  }
+
   bool operator!=(const float8_t& _flt8, const float& _flt32)
   {
     return (_flt8.Decompress() != _flt32);
@@ -255,7 +260,12 @@ void float8_t::Compress(float _num)
     return (_flt8.Decompress() != _flt32);
   }
  
-    
+
+  bool operator<=(const float8_t& _flt8_1, const float8_t& _flt8_2)
+  {
+    return (_flt8_1.Decompress() <= _flt8_2.Decompress());
+  }
+
   bool operator<=(const float8_t& _flt8, const float& _flt32)
   {
     return (_flt8.Decompress() <= _flt32);
@@ -267,18 +277,27 @@ void float8_t::Compress(float _num)
   }
  
    
-   
+  bool operator>=(const float8_t& _flt8_1, const float8_t& _flt8_2)
+  {
+    return (_flt8_1.Decompress() >= _flt8_2.Decompress());
+  }
+
   bool operator>=(const float8_t& _flt8, const float& _flt32)
   {
     return (_flt8.Decompress() >= _flt32);
   }
-  
+
   bool operator>=(const float& _flt32, const float8_t& _flt8)
   {
     return (_flt32 >= _flt8.Decompress());
   }
    
-   
+
+  bool operator<(const float8_t& _flt8_1, const float8_t& _flt8_2)
+  {
+    return (_flt8_1.Decompress() < _flt8_2.Decompress());
+  }
+
   bool operator<(const float8_t& _flt8, const float& _flt32)
   {
     return (_flt8.Decompress() < _flt32);
@@ -289,7 +308,12 @@ void float8_t::Compress(float _num)
     return (_flt32 < _flt8.Decompress());
   }
    
-   
+
+  bool operator>(const float8_t& _flt8_1, const float8_t& _flt8_2)
+  {
+    return (_flt8_1.Decompress() > _flt8_2.Decompress());
+  }
+
   bool operator>(const float8_t& _flt8, const float& _flt32)
   {
     return (_flt8.Decompress() > _flt32);
