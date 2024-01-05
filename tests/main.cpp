@@ -35,7 +35,7 @@ TEST(float8, read_write)
   for (uint32_t test_index = 0; test_index < ITERATIONS_COUNT; test_index++) {
     const float number = random_norm(elb::float8::FLT8_MIN, elb::float8::FLT8_MAX);
     const elb::float8_t compressed_number = number;
-    const float decompressed_number = compressed_number;
+    const float decompressed_number = float(compressed_number);
 
     const float error = fabsf(number - decompressed_number);
     if (compressed_number.is_norm())
