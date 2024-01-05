@@ -1,4 +1,4 @@
-#ifndef ELB_FLOAT8_H_
+﻿#ifndef ELB_FLOAT8_H_
 #define ELB_FLOAT8_H_
 
 #include <cstdint>
@@ -23,8 +23,8 @@ namespace elb
     float8_t(const float& value);
     bool is_norm() const;
     // TODO(MN): is_nan()
-    void Compress(float _flt32);
-    float Decompress() const;
+    void compress(float _flt32);
+    float decompress() const;
 
     float8_t& operator=(const float& _float);
     float8_t& operator=(const uint64_t& _num);
@@ -71,6 +71,6 @@ namespace elb
   bool operator>(const float8_t& _flt8_1, const float8_t& _flt8_2);
   bool operator>(const float8_t& _flt8, const float& _flt32);
   bool operator>(const float& _flt32, const float8_t& _flt8);
-} /* elb */
+}
 
 #endif /* ELB_FLOAT8_H_ */
