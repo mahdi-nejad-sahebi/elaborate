@@ -2,7 +2,7 @@
 #include <cmath>
 
 
-typedef union
+union float8
 {
   uint8_t memory;
 
@@ -12,9 +12,9 @@ typedef union
     uint8_t exponent : 1;
     uint8_t sign     : 1;
   };
-}Float8_t;
+};
 
-typedef union
+union float32
 {
   float memory;
 
@@ -24,7 +24,7 @@ typedef union
     uint8_t  exponent : 8;
     uint8_t  sign     : 1;
   };
-}Float32_t;
+};
 
 constexpr uint8_t FLT8_NAN = 0xff;
 constexpr uint8_t COEF     = 2;
@@ -48,14 +48,14 @@ float8_t::float8_t(const float& value)
 bool float8_t::is_norm() const
 {
   const float magnitude = fabsf(decompress());
-  return (magnitude <= float8::FLT8_MAX_NORM);
+  return (magnitude <= FLT8_MAX_NORM);
 }
 
 void float8_t::compress(float _num)
 {
-  Float8_t f8 = {0};
+  union float8 f8 = {0};
   float numf = _num;
-  Float32_t* const f32 = (Float32_t*)&numf;
+  union float32* const f32 = (union float32*)&numf;
 
   f8.sign = f32->sign;
 
@@ -82,9 +82,9 @@ void float8_t::compress(float _num)
 
   float float8_t::decompress() const
   {
-    Float8_t f8 = {0};
+    union float8 f8 = {0};
     f8.memory = m_num;
-    Float32_t f32 = {0};
+    union float32 f32 = {0};
 
     if (1 == f8.sign) {
       f8.mantisa = ~f8.mantisa;
