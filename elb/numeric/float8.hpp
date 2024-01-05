@@ -20,7 +20,9 @@ namespace elb
   struct float8_t
   {
     float8_t();
-    bool is_norm();
+    float8_t(const float& value);
+    bool is_norm() const;
+    // TODO(MN): is_nan()
     void Compress(float _flt32);
     float Decompress() const;
 
@@ -36,17 +38,17 @@ namespace elb
     float8_t& operator=(const char& _num);
     float8_t& operator=(const bool& _num);
 
-    operator float();
-    operator uint64_t();
-    operator int64_t();
-    operator uint32_t();
-    operator int32_t();
-    operator uint16_t();
-    operator int16_t();
-    operator uint8_t();
-    operator int8_t();
-    operator char();
-    operator bool();
+    operator float() const;
+    operator uint64_t() const;
+    operator int64_t() const;
+    operator uint32_t() const;
+    operator int32_t() const;
+    operator uint16_t() const;
+    operator int16_t() const;
+    operator uint8_t() const;
+    operator int8_t() const;
+    operator char() const;
+    operator bool() const;
 
     uint8_t m_num;
   };
@@ -54,14 +56,19 @@ namespace elb
   bool operator==(const float8_t& _flt8L, const float8_t& _flt8R);
   bool operator==(const float8_t& _flt8, const float& _flt32);
   bool operator==(const float& _flt32, const float8_t& _flt8);
+  bool operator!=(const float8_t& _flt8_1, const float8_t& _flt8_2);
   bool operator!=(const float8_t& _flt8, const float& _flt32);
   bool operator!=(const float& _flt32, const float8_t& _flt8);
+  bool operator<=(const float8_t& _flt8_1, const float8_t& _flt8_2);
   bool operator<=(const float8_t& _flt8, const float& _flt32);
   bool operator<=(const float& _flt32, const float8_t& _flt8);
+  bool operator>=(const float8_t& _flt8_1, const float8_t& _flt8_2);
   bool operator>=(const float8_t& _flt8, const float& _flt32);
   bool operator>=(const float& _flt32, const float8_t& _flt8);
+  bool operator<(const float8_t& _flt8_1, const float8_t& _flt8_2);
   bool operator<(const float8_t& _flt8, const float& _flt32);
   bool operator<(const float& _flt32, const float8_t& _flt8);
+  bool operator>(const float8_t& _flt8_1, const float8_t& _flt8_2);
   bool operator>(const float8_t& _flt8, const float& _flt32);
   bool operator>(const float& _flt32, const float8_t& _flt8);
 } /* elb */
