@@ -11,7 +11,7 @@ union float8
     uint8_t mantisa  : 6;
     uint8_t exponent : 1;
     uint8_t sign     : 1;
-  };
+  }__attribute__((packed));
 };
 
 union float32
@@ -23,7 +23,7 @@ union float32
     uint32_t mantisa  : 23;
     uint8_t  exponent : 8;
     uint8_t  sign     : 1;
-  };
+  }__attribute__((packed));
 };
 
 constexpr uint8_t FLT8_NAN = 0xff;
@@ -62,7 +62,7 @@ void float8_t::compress(float _num)
   const float magnitude = fabsf(numf);
   if (0.0F == magnitude)
     f8.sign = 0;
-//  const bool is_in_norm_range = (magnitude < END_NORM);
+
   const bool is_in_norm_range = (magnitude < elb::FLT8_MAX_NORM);
 
  if (is_in_norm_range) {
