@@ -62,8 +62,8 @@ void float8_t::compress(float _num)
   const float magnitude = fabsf(numf);
   if (0.0F == magnitude)
     f8.sign = 0;
-  const bool is_in_norm_range = (magnitude < END_NORM);
-//  const bool is_in_norm_range = (magnitude < elb::FLT8_MAX_NORM);
+//  const bool is_in_norm_range = (magnitude < END_NORM);
+  const bool is_in_norm_range = (magnitude < elb::FLT8_MAX_NORM);
 
  if (is_in_norm_range) {
     f8.mantisa = (uint8_t)(roundf(magnitude * 100.0F) / COEF);
