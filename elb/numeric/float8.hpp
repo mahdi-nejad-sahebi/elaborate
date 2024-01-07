@@ -62,12 +62,25 @@ namespace elb
   bool operator>=(const float8_t& _flt8_1, const float8_t& _flt8_2);
   bool operator>=(const float8_t& _flt8, const float& _flt32);
   bool operator>=(const float& _flt32, const float8_t& _flt8);
-  bool operator<(const float8_t& _flt8_1, const float8_t& _flt8_2);
-  bool operator<(const float8_t& _flt8, const float& _flt32);
-  bool operator<(const float& _flt32, const float8_t& _flt8);
-  bool operator>(const float8_t& _flt8_1, const float8_t& _flt8_2);
-  bool operator>(const float8_t& _flt8, const float& _flt32);
-  bool operator>(const float& _flt32, const float8_t& _flt8);
+  bool operator< (const float8_t& _flt8_1, const float8_t& _flt8_2);
+  bool operator< (const float8_t& _flt8, const float& _flt32);
+  bool operator< (const float& _flt32, const float8_t& _flt8);
+  bool operator> (const float8_t& _flt8_1, const float8_t& _flt8_2);
+  bool operator> (const float8_t& _flt8, const float& _flt32);
+  bool operator> (const float& _flt32, const float8_t& _flt8);
+
+  bool operator==(const float8_t& flt8_value, const int& int_value);
+  bool operator==(const int& int_value, const float8_t& flt8_value);
+  bool operator!=(const float8_t& flt8_value, const int& int_value);
+  bool operator!=(const int& int_value, const float8_t& flt8_value);
+  bool operator<=(const float8_t& flt8_value, const int& int_value);
+  bool operator<=(const int& int_value, const float8_t& flt8_value);
+  bool operator< (const float8_t& flt8_value, const int& int_value);
+  bool operator< (const int& int_value, const float8_t& flt8_value);
+  bool operator>=(const float8_t& flt8_value, const int& int_value);
+  bool operator>=(const int& int_value, const float8_t& flt8_value);
+  bool operator> (const float8_t& flt8_value, const int& int_value);
+  bool operator> (const int& int_value, const float8_t& flt8_value);
 }
 
 #endif /* ELB_FLOAT8_H_ */
