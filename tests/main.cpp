@@ -30,40 +30,35 @@ static float random_norm(const float min, const float max)
 //  }
 //}
 
-TEST(float8, read_write_sign)
-{
-  for (uint32_t test_index = 0; test_index < ITERATIONS_COUNT; test_index++) {
-    const float float32 = random_norm(elb::FLT8_MIN, elb::FLT8_MAX);
-    const elb::float8_t float8 = float32;
-
-    EXPECT_EQ(0 == float32, 0 == float8);
-    EXPECT_EQ(0 != float32, 0 != float8);
-    EXPECT_EQ(0 <= float32, 0 <= float8);
-    EXPECT_EQ(0 <  float32, 0 <  float8);
-    EXPECT_EQ(0 >= float32, 0 >= float8);
-    EXPECT_EQ(0 >  float32, 0 >  float8);
-  }
-}
-
-//TEST(float8, read_write)
+//TEST(float8, read_write_sign)
 //{
 //  for (uint32_t test_index = 0; test_index < ITERATIONS_COUNT; test_index++) {
-//    const float number = random_norm(elb::FLT8_MIN, elb::FLT8_MAX);
-//    const elb::float8_t compressed_number = number;
-//    const float decompressed_number = float(compressed_number);
+//    const float float32 = random_norm(elb::FLT8_MIN, elb::FLT8_MAX);
+//    const elb::float8_t float8 = float32;
 
-//    const float error = fabsf(number - decompressed_number);
-//    if (compressed_number.is_norm()) {
-//      EXPECT_LE(error, elb::FLT8_RESOLUTION_NORM);
-//      if (error > elb::FLT8_RESOLUTION_NORM)
-//        int x = 0;
-//    } else {
-//      EXPECT_LE(error, elb::FLT8_RESOLUTION);
-//      if (error > elb::FLT8_RESOLUTION)
-//        int x = 0;
-//    }
+//    EXPECT_EQ(0 == float32, 0 == float8);
+//    EXPECT_EQ(0 != float32, 0 != float8);
+//    EXPECT_EQ(0 <= float32, 0 <= float8);
+//    EXPECT_EQ(0 <  float32, 0 <  float8);
+//    EXPECT_EQ(0 >= float32, 0 >= float8);
+//    EXPECT_EQ(0 >  float32, 0 >  float8);
 //  }
 //}
+
+TEST(float8, read_write)
+{
+  for (uint32_t test_index = 0; test_index < ITERATIONS_COUNT; test_index++) {
+    const float src_float32 = random_norm(elb::FLT8_MIN, elb::FLT8_MAX);
+    const elb::float8_t compressed_number = src_float32;
+    const float decompressed_number = float(compressed_number);
+
+    const float error = fabsf(src_float32 - decompressed_number);
+    if (compressed_number.is_norm())
+      EXPECT_LE(error, elb::FLT8_RESOLUTION_NORM);
+    else
+      EXPECT_LE(error, elb::FLT8_RESOLUTION);
+  }
+}
 
 //TEST(float8, oeprators_float8_by_float8)
 //{
