@@ -1,6 +1,13 @@
 ﻿#ifndef ELB_FLOAT8_H_
 #define ELB_FLOAT8_H_
 
+/** \page float8
+ * This module has been implemented for floating-ponit
+ * 8-bit which can be used for temperatures, humidity,
+ * normalized values, percentage, int8_t, etc.
+ * Is compatible with floating-point 754.
+ */
+
 #include <cstdint>
 #include <cstdbool>
 
