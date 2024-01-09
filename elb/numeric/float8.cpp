@@ -51,10 +51,10 @@ bool float8_t::is_norm() const
   return (magnitude <= FLT8_MAX_NORM);
 }
 
-void float8_t::compress(float _num)
+void float8_t::compress(float value)
 {
   union float8 f8 = {0};
-  float numf = _num;
+  float numf = value;
   union float32* const f32 = (union float32*)&numf;
 
   f8.sign = f32->sign;
@@ -103,63 +103,63 @@ void float8_t::compress(float _num)
 
 
  
-  float8_t& float8_t::operator=(const float& _num)
+  float8_t& float8_t::operator=(const float& number)
   {
-    this->compress(_num);
+    this->compress(number);
     return *this;
   }
 
-  float8_t& float8_t::operator=(const uint64_t& _num)
+  float8_t& float8_t::operator=(const uint64_t& number)
   {
-    this->compress(float(_num));
+    this->compress(float(number));
     return *this;
   }
  
-  float8_t& float8_t::operator=(const int64_t& _num)
+  float8_t& float8_t::operator=(const int64_t& number)
   {
-    this->compress(float(_num));
+    this->compress(float(number));
     return *this;
   }
 
-  float8_t& float8_t::operator=(const uint32_t& _num)
+  float8_t& float8_t::operator=(const uint32_t& number)
   {
-    this->compress(float(_num));
+    this->compress(float(number));
     return *this;
   }
  
-  float8_t& float8_t::operator=(const int32_t& _num)
+  float8_t& float8_t::operator=(const int32_t& number)
   {
-    this->compress(float(_num));
+    this->compress(float(number));
     return *this;
   }
 
-  float8_t& float8_t::operator=(const uint16_t& _num)
+  float8_t& float8_t::operator=(const uint16_t& number)
   {
-    this->compress(float(_num));
+    this->compress(float(number));
     return *this;
   }
  
-  float8_t& float8_t::operator=(const int16_t& _num)
+  float8_t& float8_t::operator=(const int16_t& number)
   {
-    this->compress(float(_num));
+    this->compress(float(number));
     return *this;
   }
 
-  float8_t& float8_t::operator=(const uint8_t& _num)
+  float8_t& float8_t::operator=(const uint8_t& number)
   {
-    this->compress(float(_num));
+    this->compress(float(number));
     return *this;
   }
  
-  float8_t& float8_t::operator=(const int8_t& _num)
+  float8_t& float8_t::operator=(const int8_t& number)
   {
-    this->compress(float(_num));
+    this->compress(float(number));
     return *this;
   }
 
-  float8_t& float8_t::operator=(const bool& _num)
+  float8_t& float8_t::operator=(const bool& number)
   {
-    this->compress(float(_num));
+    this->compress(float(number));
     return *this;
   }
 
@@ -220,99 +220,99 @@ void float8_t::compress(float _num)
   }
 
 
-  bool operator==(const float8_t& _flt8L, const float8_t& _flt8R)
+  bool operator==(const float8_t& flt8_1, const float8_t& flt8_2)
   {
-    return (_flt8L.m_num == _flt8R.m_num);
+    return (flt8_1.m_num == flt8_2.m_num);
   }
 
-  bool operator==(const float8_t& _flt8, const float& _flt32)
+  bool operator==(const float8_t& flt8, const float& float32)
   {
-    return (_flt8.decompress() == _flt32);
+    return (flt8.decompress() == float32);
   }
   
-  bool operator==(const float& _flt32, const float8_t& _flt8)
+  bool operator==(const float& float32, const float8_t& flt8)
   {
-    return (_flt8.decompress() == _flt32);
+    return (flt8.decompress() == float32);
   }
    
 
-  bool operator!=(const float8_t& _flt8_1, const float8_t& _flt8_2)
+  bool operator!=(const float8_t& flt8_1, const float8_t& flt8_2)
   {
-    return (_flt8_1.m_num != _flt8_2.m_num);
+    return (flt8_1.m_num != flt8_2.m_num);
   }
 
-  bool operator!=(const float8_t& _flt8, const float& _flt32)
+  bool operator!=(const float8_t& flt8, const float& float32)
   {
-    return (_flt8.decompress() != _flt32);
+    return (flt8.decompress() != float32);
   }
   
-  bool operator!=(const float& _flt32, const float8_t& _flt8)
+  bool operator!=(const float& float32, const float8_t& flt8)
   {
-    return (_flt8.decompress() != _flt32);
+    return (flt8.decompress() != float32);
   }
  
 
-  bool operator<=(const float8_t& _flt8_1, const float8_t& _flt8_2)
+  bool operator<=(const float8_t& flt8_1, const float8_t& flt8_2)
   {
-    return (_flt8_1.decompress() <= _flt8_2.decompress());
+    return (flt8_1.decompress() <= flt8_2.decompress());
   }
 
-  bool operator<=(const float8_t& _flt8, const float& _flt32)
+  bool operator<=(const float8_t& flt8, const float& float32)
   {
-    return (_flt8.decompress() <= _flt32);
+    return (flt8.decompress() <= float32);
   }
   
-  bool operator<=(const float& _flt32, const float8_t& _flt8)
+  bool operator<=(const float& float32, const float8_t& flt8)
   {
-    return (_flt32 <= _flt8.decompress());
+    return (float32 <= flt8.decompress());
   }
  
    
-  bool operator>=(const float8_t& _flt8_1, const float8_t& _flt8_2)
+  bool operator>=(const float8_t& flt8_1, const float8_t& flt8_2)
   {
-    return (_flt8_1.decompress() >= _flt8_2.decompress());
+    return (flt8_1.decompress() >= flt8_2.decompress());
   }
 
-  bool operator>=(const float8_t& _flt8, const float& _flt32)
+  bool operator>=(const float8_t& flt8, const float& float32)
   {
-    return (_flt8.decompress() >= _flt32);
+    return (flt8.decompress() >= float32);
   }
 
-  bool operator>=(const float& _flt32, const float8_t& _flt8)
+  bool operator>=(const float& float32, const float8_t& flt8)
   {
-    return (_flt32 >= _flt8.decompress());
+    return (float32 >= flt8.decompress());
   }
    
 
-  bool operator<(const float8_t& _flt8_1, const float8_t& _flt8_2)
+  bool operator<(const float8_t& flt8_1, const float8_t& flt8_2)
   {
-    return (_flt8_1.decompress() < _flt8_2.decompress());
+    return (flt8_1.decompress() < flt8_2.decompress());
   }
 
-  bool operator<(const float8_t& _flt8, const float& _flt32)
+  bool operator<(const float8_t& flt8, const float& float32)
   {
-    return (_flt8.decompress() < _flt32);
+    return (flt8.decompress() < float32);
   }
   
-  bool operator<(const float& _flt32, const float8_t& _flt8)
+  bool operator<(const float& float32, const float8_t& flt8)
   {
-    return (_flt32 < _flt8.decompress());
+    return (float32 < flt8.decompress());
   }
    
 
-  bool operator>(const float8_t& _flt8_1, const float8_t& _flt8_2)
+  bool operator>(const float8_t& flt8_1, const float8_t& flt8_2)
   {
-    return (_flt8_1.decompress() > _flt8_2.decompress());
+    return (flt8_1.decompress() > flt8_2.decompress());
   }
 
-  bool operator>(const float8_t& _flt8, const float& _flt32)
+  bool operator>(const float8_t& flt8, const float& float32)
   {
-    return (_flt8.decompress() > _flt32);
+    return (flt8.decompress() > float32);
   }
   
-  bool operator>(const float& _flt32, const float8_t& _flt8)
+  bool operator>(const float& float32, const float8_t& flt8)
   {
-    return (_flt32 > _flt8.decompress());
+    return (float32 > flt8.decompress());
   }
 
 
