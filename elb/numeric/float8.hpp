@@ -27,20 +27,20 @@ namespace elb
     float8_t(const float& value);
     bool is_norm() const;
     // TODO(MN): is_nan()
-    void compress(float _flt32);
+    void compress(float value);
     float decompress() const;
 
-    float8_t& operator=(const float& _float);
-    float8_t& operator=(const uint64_t& _num);
-    float8_t& operator=(const int64_t& _num);
-    float8_t& operator=(const uint32_t& _num);
-    float8_t& operator=(const int32_t& _num);
-    float8_t& operator=(const uint16_t& _num);
-    float8_t& operator=(const int16_t& _num);
-    float8_t& operator=(const uint8_t& _num);
-    float8_t& operator=(const int8_t& _num);
-    float8_t& operator=(const char& _num);
-    float8_t& operator=(const bool& _num);
+    float8_t& operator=(const float& number);
+    float8_t& operator=(const uint64_t& number);
+    float8_t& operator=(const int64_t& number);
+    float8_t& operator=(const uint32_t& number);
+    float8_t& operator=(const int32_t& number);
+    float8_t& operator=(const uint16_t& number);
+    float8_t& operator=(const int16_t& number);
+    float8_t& operator=(const uint8_t& number);
+    float8_t& operator=(const int8_t& number);
+    float8_t& operator=(const char& number);
+    float8_t& operator=(const bool& number);
 
     operator float() const;
     operator uint64_t() const;
@@ -57,24 +57,24 @@ namespace elb
     uint8_t m_num;
   };
 
-  bool operator==(const float8_t& _flt8L, const float8_t& _flt8R);
-  bool operator==(const float8_t& _flt8, const float& _flt32);
-  bool operator==(const float& _flt32, const float8_t& _flt8);
-  bool operator!=(const float8_t& _flt8_1, const float8_t& _flt8_2);
-  bool operator!=(const float8_t& _flt8, const float& _flt32);
-  bool operator!=(const float& _flt32, const float8_t& _flt8);
-  bool operator<=(const float8_t& _flt8_1, const float8_t& _flt8_2);
-  bool operator<=(const float8_t& _flt8, const float& _flt32);
-  bool operator<=(const float& _flt32, const float8_t& _flt8);
-  bool operator>=(const float8_t& _flt8_1, const float8_t& _flt8_2);
-  bool operator>=(const float8_t& _flt8, const float& _flt32);
-  bool operator>=(const float& _flt32, const float8_t& _flt8);
-  bool operator< (const float8_t& _flt8_1, const float8_t& _flt8_2);
-  bool operator< (const float8_t& _flt8, const float& _flt32);
-  bool operator< (const float& _flt32, const float8_t& _flt8);
-  bool operator> (const float8_t& _flt8_1, const float8_t& _flt8_2);
-  bool operator> (const float8_t& _flt8, const float& _flt32);
-  bool operator> (const float& _flt32, const float8_t& _flt8);
+  bool operator==(const float8_t& flt8_1, const float8_t& flt8_2);
+  bool operator==(const float8_t& flt8, const float& float32);
+  bool operator==(const float& float32, const float8_t& flt8);
+  bool operator!=(const float8_t& flt8_1, const float8_t& flt8_2);
+  bool operator!=(const float8_t& flt8, const float& float32);
+  bool operator!=(const float& float32, const float8_t& flt8);
+  bool operator<=(const float8_t& flt8_1, const float8_t& flt8_2);
+  bool operator<=(const float8_t& flt8, const float& float32);
+  bool operator<=(const float& float32, const float8_t& flt8);
+  bool operator>=(const float8_t& flt8_1, const float8_t& flt8_2);
+  bool operator>=(const float8_t& flt8, const float& float32);
+  bool operator>=(const float& float32, const float8_t& flt8);
+  bool operator< (const float8_t& flt8_1, const float8_t& flt8_2);
+  bool operator< (const float8_t& flt8, const float& float32);
+  bool operator< (const float& float32, const float8_t& flt8);
+  bool operator> (const float8_t& flt8_1, const float8_t& flt8_2);
+  bool operator> (const float8_t& flt8, const float& float32);
+  bool operator> (const float& float32, const float8_t& flt8);
 
   bool operator==(const float8_t& flt8_value, const int& int_value);
   bool operator==(const int& int_value, const float8_t& flt8_value);
